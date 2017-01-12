@@ -1,12 +1,14 @@
 package com.lasalle.second.part.quiz;
 
 import android.content.res.Resources;
-import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import com.lasalle.second.part.quiz.models.Answer;
+import com.lasalle.second.part.quiz.models.Question;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +16,7 @@ import java.util.List;
 
 public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private List<Pair<String, List<Pair<String, Boolean> > > > questionList;
+    private List<Question> questionList;
     private int currentQuestion = 0;
     private List<RadioButton> radioButtonList;
 
@@ -41,23 +43,23 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     private void fillQuestionList() {
         questionList = new ArrayList<>();
-        questionList.add(new Pair<>(
+        questionList.add(new Question(
             "Who won the 2014 World Cup?",
             Arrays.asList(
-                new Pair<>("Argentina", false),
-                new Pair<>("Brazil", false),
-                new Pair<>("Spain", false),
-                new Pair<>("Germany", false)
+                new Answer("Argentina", false),
+                new Answer("Brazil", false),
+                new Answer("Spain", false),
+                new Answer("Germany", false)
             )
         ));
 
-        questionList.add(new Pair<>(
+        questionList.add(new Question(
             "Who won the 2016 LOL Worlds?",
             Arrays.asList(
-                new Pair<>("SKT", true),
-                new Pair<>("Fnatic", false),
-                new Pair<>("EDG", false),
-                new Pair<>("Origen", false)
+                new Answer("SKT", true),
+                new Answer("Fnatic", false),
+                new Answer("EDG", false),
+                new Answer("Origen", false)
             )
         ));
     }
@@ -73,15 +75,15 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void formatQuestion() {
-        Pair<String, List<Pair<String, Boolean>>> question = questionList.get(currentQuestion);
+        Question question = questionList.get(currentQuestion);
 
         TextView textView = (TextView) findViewById(R.id.questionTitle);
-        textView.setText(question.first);
+        textView.setText(question.getText());
 
         int answerIndex = 0;
-        for(Pair<String, Boolean> answer : question.second)
+        for(Answer answer : question.getAnswerList())
         {
-            radioButtonList.get(answerIndex).setText(answer.first);
+            radioButtonList.get(answerIndex).setText(answer.getText());
             ++answerIndex;
         }
     }
