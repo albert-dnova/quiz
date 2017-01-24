@@ -20,7 +20,8 @@
             android:name=".QuestionActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".ResultActivity" />
-        <activity android:name=".activity.highscore.HighscoreActivity"></activity>
+        <activity android:name=".activity.highscore.HighscoreActivity" />
+        <activity android:name=".activity.TabLayoutActivity"></activity>
     </application>
 
 </manifest>
