@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.lasalle.second.part.quiz.activity.highscore.HighscoreActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), QuestionActivity.class);
+                Intent i = new Intent(getApplicationContext(), HighscoreActivity.class);
                 startActivity(i);
             }
         });
