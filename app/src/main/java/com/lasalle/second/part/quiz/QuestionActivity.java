@@ -1,6 +1,8 @@
 package com.lasalle.second.part.quiz;
 
 import android.content.res.Resources;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.lasalle.second.part.quiz.activity.question.fragment.QuestionPortraitFragment;
 import com.lasalle.second.part.quiz.manager.QuestionManager;
 import com.lasalle.second.part.quiz.models.Answer;
 import com.lasalle.second.part.quiz.models.Question;
@@ -31,19 +34,10 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         Log.d(TAG, "I have been created");
         setContentView(R.layout.activity_question);
         Log.d(TAG, "Setting content view");
-        radioButtonList = new ArrayList<>();
-        radioButtonList.add((RadioButton) findViewById(R.id.answer1));
-        radioButtonList.add((RadioButton) findViewById(R.id.answer2));
-        radioButtonList.add((RadioButton) findViewById(R.id.answer3));
-        radioButtonList.add((RadioButton) findViewById(R.id.answer4));
         Log.d(TAG, "Added buttons references");
-        questionManager = new QuestionManager();
 
-        Log.d(TAG, "Created question Manager");
-        formatTitle();
-        Log.d(TAG, "Title formatted");
-        formatQuestion();
-        Log.d(TAG, "Question formatted");
+
+        addFragment();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,27 +73,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         return super.onOptionsItemSelected(item);
     }
 
-    private void formatTitle() {
-        Resources res = getResources();
-        String text = String.format(
-                res.getString(R.string.current_question),
-                currentQuestion + 1,
-                questionManager.countQuestions());
-        TextView textView = (TextView) findViewById(R.id.questionBreadcrumb);
-        textView.setText(text);
-    }
 
-    private void formatQuestion() {
-        Question question = questionManager.getNextQuestion();
-
-        TextView textView = (TextView) findViewById(R.id.questionTitle);
-        textView.setText(question.getText());
-
-        int answerIndex = 0;
-        for(Answer answer : question.getAnswerList())
-        {
-            radioButtonList.get(answerIndex).setText(answer.getText());
-            ++answerIndex;
-        }
+    private void addFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.activity_question_frame_layout, new QuestionPortraitFragment());
+        fragmentTransaction.commit();
     }
 }

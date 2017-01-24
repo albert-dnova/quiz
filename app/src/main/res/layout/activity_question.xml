@@ -21,56 +21,9 @@
         android:background="?attr/colorPrimary"
         app:titleTextColor="@android:color/white" />
 
-    <TextView
-        android:text="@string/current_question"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/questionBreadcrumb"
-        android:textAlignment="center" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/questionTitle"
-        android:textStyle="normal|bold"
-        android:textAlignment="center" />
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RadioButton
-            android:text="RadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/answer1" />
-
-        <RadioButton
-            android:text="RadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/answer2" />
-
-        <RadioButton
-            android:text="RadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/answer3" />
-
-        <RadioButton
-            android:text="RadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/answer4" />
-    </RadioGroup>
-
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/submitButton" />
-
+        android:id="@+id/activity_question_frame_layout" />
 
 </LinearLayout>
